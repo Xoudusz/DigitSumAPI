@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class DigitSumController {
 
+    private int usageCount = 0;
+
     @GetMapping("/api/digitsum")
     public int getSum(@RequestParam(name = "number") int number) {
         int sum = 0;
@@ -16,7 +18,14 @@ public class DigitSumController {
             number /= 10;
         }
 
+        usageCount++;
+
         return sum;
+    }
+
+    @GetMapping("/api/usage")
+    public int getUsageCount() {
+        return usageCount;
     }
 
 }
